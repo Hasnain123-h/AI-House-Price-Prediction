@@ -1,17 +1,10 @@
 from pathlib import Path
 import pandas as pd
 
-
 TARGET_COLUMN = "median_house_value"
 CATEGORICAL_COLUMN = "ocean_proximity"
 
-
-def create_features(df):
-    """
-    Separate features and target,
-    then apply One-Hot Encoding.
-    """
-
+def create_features(df):    
     X = df.drop(TARGET_COLUMN, axis=1)
     y = df[TARGET_COLUMN]
 
@@ -24,14 +17,7 @@ def create_features(df):
     return X, y
 
 
-def prepare_input(input_data, feature_columns):
-    """
-    Prepare new house data for prediction.
-
-    The input is converted using the same feature
-    columns that were used during model training.
-    """
-
+def prepare_input(input_data, feature_columns):    
     input_data = pd.get_dummies(
         input_data,
         columns=[CATEGORICAL_COLUMN],
