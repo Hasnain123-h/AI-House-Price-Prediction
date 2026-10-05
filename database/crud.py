@@ -1,10 +1,7 @@
 from sqlalchemy import text
 
 from database.connection import get_connection
-
-
 def save_prediction(data, predicted_price):
-
     connection = get_connection()
 
     query = text("""

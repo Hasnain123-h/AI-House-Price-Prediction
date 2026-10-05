@@ -32,20 +32,10 @@ def prepare_input(input_data, feature_columns):
 
     return input_data
 
-
 if __name__ == "__main__":
-
     BASE_DIR = Path(__file__).resolve().parent.parent
-
-    file_path = (
-        BASE_DIR
-        / "data"
-        / "processed"
-        / "cleaned_housing.csv"
-    )
-
+    file_path = (BASE_DIR/ "data"/ "processed" / "cleaned_housing.csv")
     df = pd.read_csv(file_path)
-
     X, y = create_features(df)
 
     print("Feature engineering completed!")

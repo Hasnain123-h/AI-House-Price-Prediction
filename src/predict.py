@@ -3,64 +3,28 @@ from pathlib import Path
 import joblib
 import pandas as pd
 from tensorflow import keras
-
 from src.feature_engineering import prepare_input
-
-
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-MODEL_PATH = (
-    BASE_DIR
-    / "models"
-    / "ann_house_price_model.keras"
-)
-
-SCALER_PATH = (
-    BASE_DIR
-    / "models"
-    / "ann_scaler.pkl"
-)
-
-FEATURES_PATH = (
-    BASE_DIR
-    / "data"
-    / "processed"
-    / "X_train.csv"
-)
-
-
+MODEL_PATH = (BASE_DIR/ "models"/ "ann_house_price_model.keras")
+SCALER_PATH = (BASE_DIR/ "models"/ "ann_scaler.pkl")
+FEATURES_PATH = (BASE_DIR/ "data"/ "processed"/ "X_train.csv")
 def predict_ann_price(input_data):
-
-    # Load ANN model
     model = keras.models.load_model(MODEL_PATH)
-
-    # Load scaler
     scaler = joblib.load(SCALER_PATH)
-
-    # Load training feature columns
     X_train = pd.read_csv(FEATURES_PATH)
-
     feature_columns = X_train.columns.tolist()
-
-    # Prepare input
     prepared_input = prepare_input(
         input_data,
         feature_columns
     )
-
-    # Scale input
     input_scaled = scaler.transform(
         prepared_input
     )
-
-    # Prediction
     prediction = model.predict(
         input_scaled,
         verbose=0
     )
-
     return float(prediction.flatten()[0])
-
 
 if __name__ == "__main__":
 
@@ -77,7 +41,6 @@ if __name__ == "__main__":
     })
 
     predicted_price = predict_ann_price(sample)
-
     print(
         "Predicted House Price:",
         predicted_price

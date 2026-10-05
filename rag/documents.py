@@ -1,6 +1,4 @@
 from pathlib import Path
-
-
 def load_documents():
 
     documents = [
@@ -51,14 +49,9 @@ def load_documents():
 
 
 if __name__ == "__main__":
-
     documents = load_documents()
-
     print("Documents loaded successfully!")
-
     print("Number of documents:", len(documents))
-
     for i, document in enumerate(documents, start=1):
-
         print(f"\nDocument {i}:")
         print(document)

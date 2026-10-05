@@ -4,26 +4,19 @@ from openai import OpenAI
 
 from rag.retriever import get_relevant_documents
 
-
-# Load environment variables
 load_dotenv()
 
-
-# Create OpenAI client
 client = OpenAI(
     api_key=os.getenv("OPENAI_API_KEY")
 )
 
 
-def generate_answer(question):
-
-    # Retrieve relevant documents
+def generate_answer(question):   
     documents = get_relevant_documents(
         question,
         n_results=2
     )
 
-    # Combine retrieved documents
     context = "\n\n".join(
         documents
     )
@@ -53,7 +46,6 @@ Give a simple and clear answer.
 
 
 if __name__ == "__main__":
-
     question = (
         "What does median income mean "
         "in the California Housing dataset?"

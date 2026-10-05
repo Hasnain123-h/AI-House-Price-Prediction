@@ -2,7 +2,6 @@ import pandas as pd
 
 from src.predict import predict_ann_price
 
-
 def test_house_price_prediction():
 
     sample = pd.DataFrame({
